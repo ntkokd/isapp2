@@ -15,6 +15,10 @@
             doSelect();
         }
 
+        function button2Pressed(){
+            Serch();
+        }
+
         async function doSelect() {
             var sql = 'select * from Tweets order by time desc limit 20';
             var objects = await osql.connect(sql);
@@ -28,12 +32,17 @@
             html = html + '</ul>';
             document.getElementById('result').innerHTML = html;
         }
+        async function Serch(){
+            ver sql
+        }
     </script>
 
 </head>
 
 <body>
     <h1>tweet!!!!!!</h1>
+    <input type = "text" id ="serch">
+    <button onclick="button2Pressed()">Serch</button>   
     <button onclick="button1Pressed()">X</button>
     <hr>
     <p id="result">xxxx</p>
