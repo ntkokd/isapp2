@@ -33,15 +33,15 @@
             document.getElementById('result').innerHTML = html;
         }
         async function Serch(){
-            var words = getElementById('serch');
-            var ser_sql = 'select * from Tweets where tweet like ' + '%' + words + '%';
+            var words = document.getElementById('serch').value;
+            var ser_sql = 'select * from Tweets where tweet like "%' + words + '%" order by time desc limit 20';
             var ser_objects = await osql.connect(ser_sql);
             console.log(ser_objects);
             var output = '';
             output = output + '<ul>';
-            for (var i = 0; i < objects.length; i++) {
-                var object = objects[i];
-                html = html + '<li>' + object.name + ',' + object.id + ',' + object.tweet + ',' + object.time + '</li>';
+            for (var i = 0; i < ser_objects.length; i++) {
+                var ser_object = ser_objects[i];
+                output = output + '<li>' + ser_object.name + ',' + ser_object.id + ',' + ser_object.tweet + ',' + ser_object.time + '</li>';
             }
             output = output + '</ul>';
             document.getElementById('result').innerHTML = output
@@ -54,7 +54,7 @@
 <body>
     <h1>tweet!!!!!!</h1>
     <input type = "text" id ="serch">
-    <button onclick="button2Pressed()">Serch</button>   
+    <button onclick="button2Pressed()">検索</button>   
     <button onclick="button1Pressed()">X</button>
     <hr>
     <p id="result">xxxx</p>
