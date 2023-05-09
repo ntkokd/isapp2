@@ -34,7 +34,18 @@
         }
         async function Serch(){
             var words = getElementById('serch');
-            var output = 'select * from Tweets like '
+            var ser_sql = 'select * from Tweets where tweet like ' + '%' + words + '%';
+            var ser_objects = await osql.connect(ser_sql);
+            console.log(ser_objects);
+            var output = '';
+            output = output + '<ul>';
+            for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                html = html + '<li>' + object.name + ',' + object.id + ',' + object.tweet + ',' + object.time + '</li>';
+            }
+            output = output + '</ul>';
+            document.getElementById('result').innerHTML = output
+           
         }
     </script>
 
