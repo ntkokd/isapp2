@@ -11,11 +11,19 @@
     <script>
         osql.requireLogin();//すべてのページに入れる．google認証をして，osql.connect()や，osql.getMe()を使えるようにしてくれる．
 
+        $().ready(function log(){
+            doselect()
+        });
+
         function button1Pressed() {
             doInsert();
-
         }
 
+
+        function buttonPressed(){
+            Serch();
+        }
+        
         async function doInsert() {
             var userid = document.getElementById('tf1').value;
             var tweet = document.getElementById('tf2').value;
@@ -28,9 +36,18 @@
             document.getElementById('tf2').value = "";            
         }
 
-
-        function buttonPressed(){
-            Serch();
+        async function doselect(){
+            var ser_sql = 'select * from Tweets order by time desc limit 20';
+            var ser_objects = await osql.connect(ser_sql);
+            console.log(ser_objects);
+            var output = '';
+            output = output + '<ul>';
+            for (var i = 0; i < ser_objects.length; i++) {
+                var ser_object = ser_objects[i];
+                output = output + '<li>' + ser_object.name + ',' + ser_object.id + ',' + ser_object.tweet + ',' + ser_object.time + '</li>';
+            }
+            output = output + '</ul>';
+            document.getElementById('t_result').innerHTML = output
         }
 
         async function Serch(){
