@@ -11,30 +11,19 @@
     <script>
         osql.requireLogin();//すべてのページに入れる．google認証をして，osql.connect()や，osql.getMe()を使えるようにしてくれる．
 
-        function button1Pressed() {
-            doSelect();
-        }
-
-        function button2Pressed(){
+        function buttonPressed(){
             Serch();
         }
 
-        async function doSelect() {
-            var sql = 'select * from Tweets order by time desc limit 20';
-            var objects = await osql.connect(sql);
-            console.log(objects);
-            var html = '';
-            html = html + '<ul>';
-            for (var i = 0; i < objects.length; i++) {
-                var object = objects[i];
-                html = html + '<li>' + object.name + ',' + object.id + ',' + object.tweet + ',' + object.time + '</li>';
-            }
-            html = html + '</ul>';
-            document.getElementById('result').innerHTML = html;
-        }
         async function Serch(){
-            var words = document.getElementById('serch').value; //.valueつける　文字列を読み込む　
-            var ser_sql = 'select * from Tweets where tweet like "%' + words + '%" order by time desc limit 20';
+            var words = document.getElementById('serch').value; //.valueつける　文字列を読み込む
+            if(words = ''){ //検索欄が空欄の場合
+                var ser_sql = 'select * from Tweets order by time desc limit 20';
+            }
+            else{
+                var ser_sql = 'select * from Tweets where tweet like "%' + words + '%" order by time desc limit 20';
+            }
+            
             var ser_objects = await osql.connect(ser_sql);
             console.log(ser_objects);
             var output = '';
@@ -57,8 +46,7 @@
 <body>
     <h1>tweet!!!!!!</h1>
     <input type = "text" id ="serch">
-    <button onclick="button2Pressed()">検索</button>   
-    <button onclick="button1Pressed()">X</button>
+    <button onclick="buttonPressed()">検索</button> 
     <hr>
     <p id="result">xxxx</p>
 </body>
