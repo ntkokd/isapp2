@@ -33,7 +33,7 @@
             document.getElementById('result').innerHTML = html;
         }
         async function Serch(){
-            var words = document.getElementById('serch').value;
+            var words = document.getElementById('serch').value; //文字列を読み込む　.valueつけ忘れない
             var ser_sql = 'select * from Tweets where tweet like "%' + words + '%" order by time desc limit 20';
             var ser_objects = await osql.connect(ser_sql);
             console.log(ser_objects);
