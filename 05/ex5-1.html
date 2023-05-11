@@ -17,7 +17,7 @@
 
         async function Serch(){
             var words = document.getElementById('serch').value; //.valueつける　文字列を読み込む
-            if(words = ''){ //検索欄が空欄の場合
+            if(words == ''){ //検索欄が空欄の場合
                 var ser_sql = 'select * from Tweets order by time desc limit 20';
             }else{
                 var ser_sql = 'select * from Tweets where tweet like "%' + words + '%" order by time desc limit 20';
