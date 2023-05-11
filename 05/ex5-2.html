@@ -27,6 +27,32 @@
             document.getElementById('result').innerHTML = "tweetしました";
             document.getElementById('tf2').value = "";            
         }
+
+
+        function buttonPressed(){
+            Serch();
+        }
+
+        async function Serch(){
+            var words = document.getElementById('serch').value; //.valueつける　文字列を読み込む
+            if(words == ''){ //検索欄が空欄の場合
+                var ser_sql = 'select * from Tweets order by time desc limit 20';
+            }else{
+                var ser_sql = 'select * from Tweets where tweet like "%' + words + '%" order by time desc limit 20';
+            }
+            
+            var ser_objects = await osql.connect(ser_sql);
+            console.log(ser_objects);
+            var output = '';
+            output = output + '<ul>';
+            for (var i = 0; i < ser_objects.length; i++) {
+                var ser_object = ser_objects[i];
+                output = output + '<li>' + ser_object.name + ',' + ser_object.id + ',' + ser_object.tweet + ',' + ser_object.time + '</li>';
+            }
+            output = output + '</ul>';
+            document.getElementById('t_result').innerHTML = output
+        
+        }
     </script>
 
 </head>
@@ -40,6 +66,10 @@
     <button onclick="button1Pressed()">tweet</button>
     <br>
     <p id="result"></p>
+    <input type = "text" id ="serch">
+    <button onclick="buttonPressed()">検索</button> 
+    <hr>
+    <p id="t_result">xxxxx</p>
 </body>
 
 </html>
