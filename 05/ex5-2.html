@@ -11,8 +11,10 @@
     <script>
         osql.requireLogin();//すべてのページに入れる．google認証をして，osql.connect()や，osql.getMe()を使えるようにしてくれる．
 
+        var x;
+
         $().ready(function log(){
-            doselect()
+            doselect();
         });
 
         function button1Pressed() {
