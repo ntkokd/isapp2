@@ -33,17 +33,20 @@
             document.getElementById('result').innerHTML = html;
         }
         async function Serch(){
-            var words = document.getElementById('serch').value; //文字列を読み込む　.valueつけ忘れない
+            var words = document.getElementById('serch').value; //.valueつける　文字列を読み込む　
             var ser_sql = 'select * from Tweets where tweet like "%' + words + '%" order by time desc limit 20';
             var ser_objects = await osql.connect(ser_sql);
             console.log(ser_objects);
             var output = '';
-            output = output + '<ul>';
+            output = output + '<table border = "1">';
             for (var i = 0; i < ser_objects.length; i++) {
                 var ser_object = ser_objects[i];
-                output = output + '<li>' + ser_object.name + ',' + ser_object.id + ',' + ser_object.tweet + ',' + ser_object.time + '</li>';
+                output = output + '<tr>';
+                output = output + '<td>' + ser_object.id + '</td>';
+                output = output + '<td>' + ser_object.name + '</td>';
+                output = output + '</tr>';
             }
-            output = output + '</ul>';
+            output = output + '</table>';
             document.getElementById('result').innerHTML = output
            
         }
