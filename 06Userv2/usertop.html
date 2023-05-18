@@ -18,7 +18,8 @@
         function init(){
             var name = sessionStorage.getItem('username');
             document.getElementById('welcome').innerHTML = 'ようこそ' + name + 'さん'; 
-            var id = osql.getParam('userid');
+
+            var id = sessionStorage.getItem('userid');
             document.getElementById('test').innerHTML = id;
             var URL = document.getElementById('link');
             var newURL = URL.href + '?userid=' + id; 
