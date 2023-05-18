@@ -19,6 +19,7 @@
             var name = sessionStorage.getItem('username');
             document.getElementById('welcome').innerHTML = 'ようこそ' + name + 'さん'; 
             var id = osql.getParam('userid');
+            document.getElementById('test').innerHTML = id;
             var URL = document.getElementById('link');
             var newURL = URL.href + '?userid=' + id; 
             document.getElementById('link').href = newURL;                                                                                                                                                                                 
@@ -30,6 +31,7 @@
 <body>
     <h1>ユーザトップ</h1>
     <p id="welcome">ようこそxxxさん</p>
+    <p id="test"></p>
     <hr>
     <a id = "link" href = update.html>ユーザ情報変更</a>
 
