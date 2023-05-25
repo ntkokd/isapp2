@@ -27,7 +27,7 @@
                 html = html + '<td>' + object.id + '</td>';
                 html = html + '<td>' + object.name + '</td>';
                 html = html + '<td>' + '<a href="update.html?userid=' + object.id + '">変更</a>' + '</td>';
-                html = html + '<td>' + '<button onclick="buttonPressed(' + object.id + ')">削除</button>' + '</td>';
+                html = html + '<td>' + '<button onclick="buttonPressed(' + "'" + object.id + "'" + ')">削除</button>' + '</td>';
                 html = html + '</tr>';
             }
             html = html + '</table>';
@@ -35,7 +35,7 @@
         }
         
         async function buttonPressed(ID){
-            var sql = `delete from Users where id = "${ID}";`
+            var sql = `delete from Users where id="${ID}"`;
             var objects = await osql.connect(sql);
             console.log(objects);
             execSelect();
