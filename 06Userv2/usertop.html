@@ -20,10 +20,12 @@
             document.getElementById('welcome').innerHTML = 'ようこそ' + name + 'さん'; 
 
             var id = sessionStorage.getItem('userid');
-            document.getElementById('test').innerHTML = id;
-            var URL = document.getElementById('link');
-            var newURL = URL.href + '?userid=' + id; 
-            document.getElementById('link').href = newURL;                                                                                                                                                                                 
+            var U_URL = document.getElementById('ulink');
+            var UnewURL = U_URL.href + '?userid=' + id; 
+            document.getElementById('ulink').href = UnewURL;
+            var T_URL = document.getElementById('tlink');
+            var TnewURL = T_URL.href + '?userid=' + id; 
+            document.getElementById('ulink').href = TnewURL;                                                                                                                                                                                  
         }
     </script>
 
@@ -32,9 +34,10 @@
 <body>
     <h1>ユーザトップ</h1>
     <p id="welcome">ようこそxxxさん</p>
-    <p id="test"></p>
     <hr>
-    <a id = "link" href = update.html>ユーザ情報変更</a>
+    <a id = "ulink" href = update.html>ユーザ情報変更</a>
+    <br>
+    <a id = "tlink" href = tweet.html>ツイート</a>
 
 </body>
 
