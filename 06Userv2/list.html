@@ -32,8 +32,13 @@
             html = html + '</table>';
             document.getElementById('result').innerHTML = html;
         }
-        function buttonPressed(){
-            var id = document.getElementById('tfid').value;
+        
+        async function buttonPressed(){
+            var userid = document.getElementById('tfid').value;
+            var sql = `delete from Users where id = "${userid}";`
+            var objects = await osql.connect(sql);
+            console.log(objects);
+            document.getElementById('tfid').value = '';
         }
     </script>
 
